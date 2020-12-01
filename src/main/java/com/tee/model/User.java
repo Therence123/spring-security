@@ -21,6 +21,8 @@ public class User {
 	    private String email;
 	
 	    private String password;
+	    
+	    private String reset_password_token;
 	 
 	    @ManyToMany(fetch = FetchType.EAGER)
 	    @JoinTable(name = "user_roles", 
@@ -87,6 +89,16 @@ public User() {}
 
 		public void setRoles(Set<Role> roles) {
 			this.roles = roles;
+		}
+
+
+		public String getReset_password_token() {
+			return reset_password_token;
+		}
+
+
+		public void setReset_password_token(String reset_password_token) {
+			this.reset_password_token = reset_password_token;
 		}
 	    
 	    

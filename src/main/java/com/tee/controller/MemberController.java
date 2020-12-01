@@ -17,7 +17,7 @@ import com.tee.model.Member;
 import com.tee.security.service.MemberService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("api/v1/memberside")
 public class MemberController {
 
@@ -25,7 +25,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	//get all members
-//	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 	@GetMapping("/memberlist")
 	public List<Member> ReturnAllMembers(){
 		return memberService.getListOfMembers();
@@ -47,15 +47,21 @@ public class MemberController {
     } 
 	
 	//Register a new member
-	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")	
+//	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")	
 	@PostMapping("/register-new")
 	public Member registerNewMember(@RequestBody Member member) {
 		return memberService.addNewMember(member);
 	}
 	
+	//Register Bulk Members
+	@PostMapping("/register-bulk-users")
+	public List<Member> addLoans(@RequestBody List<Member> members) {
+		  return memberService.saveLoans(members);
+		}
+	
 	//Update a member's details
 	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")	
-	@PutMapping("/edit")
+	@PutMapping("/edit/{id}")
 	public Member updateMember(@RequestBody Member member) {
 		return memberService.updateMember(member);
 	}

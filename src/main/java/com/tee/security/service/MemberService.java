@@ -38,6 +38,13 @@ public class MemberService {
     	return repo.save(member);
     }
     
+    //Add bulk members
+ public List<Member> saveLoans(List<Member> members) {
+    	
+    	return repo.saveAll(members);
+    }
+    
+    
     //Update a member's detail
     public Member updateMember(Member member) {
     	Member existing = repo.findById(member.getId()).orElse(null);
@@ -46,7 +53,7 @@ public class MemberService {
     	existing.setEmail(member.getEmail());
     	existing.setBranch(member.getBranch());
     	existing.setGpsAddress(member.getGpsAddress());
-    	existing.setMaritalStatus(member.getId());
+    	existing.setMaritalStatus(member.getMaritalStatus());
     	existing.setOccupation(member.getOccupation());
     	existing.setDepatureDate(member.getDepatureDate());
     	existing.setStatus(member.getStatus());

@@ -42,7 +42,8 @@ public class AuthAPIs {
 	 
 	  @Autowired
 	  UserRepository userRepository;
-	 
+	  
+	  
 	  @Autowired
 	  RoleRepository roleRepository;
 	 
@@ -56,7 +57,7 @@ public class AuthAPIs {
 		public JavaMailSender javaMailSender;
 	  
 	  
-	 //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')") 
+//	 @PreAuthorize("hasRole('USER') or hasRole('ADMIN')") 
 	  @PostMapping("/signin")
 	  public ResponseEntity authenticateUser(@RequestBody LoginForm loginRequest) {
 	 
@@ -144,8 +145,7 @@ public class AuthAPIs {
 	 
 	    return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	  }
-	}
-	    
-	    
-	    
+	  
+	  
+}	    
 
